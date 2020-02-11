@@ -1,0 +1,37 @@
+<div class="header">
+    <p class="mat-h1">{{ pageTitle }}</p>
+</div>
+
+<div class="login-div">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" type="email" [ngClass]="{ 'is-invalid': f.email.errors }">
+                <mat-error *ngIf="f.email.errors">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Invalid email format</div>
+                </mat-error>
+                <mat-icon matSuffix>mail</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" type="password"
+                    [ngClass]="{ 'is-invalid': f.password.errors }">
+                <mat-error *ngIf="f.password.errors">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                </mat-error>
+                <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <button mat-raised-button style="margin-right: 30px;"
+                [title]="loginForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!loginForm.valid">Login</button>
+            <strong><a routerLink="/register" mat-button color="primary">Register</a></strong>
+        </p>
+
+    </form>
+</div>

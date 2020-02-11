@@ -1,0 +1,108 @@
+<div class="header">
+    <p class="mat-h1">{{ pageTitle }}</p>
+</div>
+
+<mat-card style="height: 300px;" *ngIf='product'>
+    <img mat-card-image sty [src]='product.small_image_path' [alt]='product.description'
+        style="float:left; width: 30%; padding: 50px">
+
+    <div>
+        <mat-card-header>
+            <h1>{{product.title}}</h1>
+        </mat-card-header>
+
+        <div class="mat-body-1" style="float:left; margin-left:5%; width: 40%; font-size: 20px; line-height: 30px;">
+            <p><strong>Name:</strong> {{product.title}}</p>
+
+            <p><strong>Description:</strong> {{product.description}}</p>
+
+            <p><strong>Price:</strong> {{product.price | currency}}</p>
+        </div>
+        <mat-card-actions>
+            <button mat-raised-button (click)="addToCart(product)">Add To Cart</button>
+            <button mat-raised-button (click)='onBack()'>Back</button>
+        </mat-card-actions>
+
+    </div>
+</mat-card>
+
+
+<div class="review-container">
+    <mat-card-title>Leave a Review</mat-card-title>
+    <form [formGroup]='reviewForm' class="review-container">
+        <mat-form-field>
+            <mat-label>Rating</mat-label>
+            <mat-select formControlName="rating">
+                <mat-option *ngFor="let rating of ratings" [value]="rating">
+                    {{rating}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Title" name="title" formControlName="title"
+                [ngClass]="{'is-invalid': (reviewForm.get('title').touched || reviewForm.get('title').dirty) && !reviewForm.get('title').valid }">
+            <mat-error *ngIf="reviewForm.get('title').errors?.required">
+                Title is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput placeholder="Content" name="content" formControlName="content"
+                [ngClass]="{'is-invalid': (reviewForm.get('content').touched || reviewForm.get('content').dirty) && !reviewForm.get('content').valid }"></textarea>
+            <mat-error *ngIf="reviewForm.get('content').errors?.required">
+                Content is required
+            </mat-error>
+        </mat-form-field>
+        <mat-action-list>
+            <button mat-raised-button
+                [title]="reviewForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!reviewForm.valid" (click)="addReview()">Submit Review</button>
+        </mat-action-list>
+    </form>
+</div>
+
+<div *ngIf='reviews'>
+    <h2 class="mat-display-1" style="margin: 30px 0px 20px 0px;">Past Reviews</h2>
+
+    <div class="review-container" style="margin-bottom: 15px;" *ngFor='let review of reviews'>
+        <div *ngIf="currentUser && currentUser.id == review.userId">
+            <a *ngIf="editState && reviewToEdit == review" (click)="clearState()">
+                <mat-icon style="float:right" aria-hidden="false">compress</mat-icon>
+            </a>
+            <a (click)="editReview($event, review)">
+                <mat-icon style="float:right" aria-hidden="false">create</mat-icon>
+            </a>
+        </div>
+        <mat-card-title>{{ review.title }} - ({{ review.rating }} / 5)</mat-card-title>
+        <sub>Updated on {{ review.updatedAt | date:'M/d/yy, h:mm a' }}</sub>
+        <p>{{ review.body }}</p>
+        <mat-divider></mat-divider>
+        <div *ngIf="editState && reviewToEdit.id == review.id">
+            <form style="margin: 20px;">
+                <mat-form-field>
+                    <mat-label>Rating</mat-label>
+                    <mat-select [(value)]="review.rating" name="rating">
+                        <mat-option *ngFor="let rating of ratings" [value]="rating">
+                            {{ rating }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <p>
+                    <mat-form-field style="margin:0px; width: 95%" appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input matInput [(ngModel)]="review.title" name="title">
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field style="margin:0px; width: 95%" appearance="outline">
+                        <mat-label>Content</mat-label>
+                        <textarea matInput [(ngModel)]="review.body" name="content"></textarea>
+                    </mat-form-field>
+                </p>
+                <button mat-raised-button (click)="updateReview(review)">Update Review</button>
+                <button mat-raised-button mat-raised-button color="accent" (click)="deleteReview(review)">Delete
+                    Review</button>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,329 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+/* Adds space between title and nav buttons */
+
+.nav-spacer {
+  flex: 1 1 auto;
+}
+
+/* Product Card sizing and styling */
+
+mat-card.product-card {
+  width: 190px;
+  height: 300px;
+  padding: 25px;
+  margin: auto;
+  box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for hovering over cards */
+
+mat-card.product-card:hover {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Spacing between each product card */
+
+div.container-fluid {
+  float: left;
+  margin: 20px 10px 10px 10px;
+}
+
+/* Centers the price and rating */
+
+mat-card-content {
+  text-align: center;
+}
+
+/* Styling for the price and rating */
+
+mat-card-content>p {
+  float: left;
+  width: 40%;
+  margin: 0 1%;
+  font-size: 15px;
+}
+
+/* Center "Add To Cart" Button  */
+
+div mat-card-actions button {
+  margin-top: 30px !important;
+  margin-left: 45px !important;
+}
+
+/* Body styling */
+
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: #f2f2f2;
+  text-decoration-color: black;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+/* Subpage styling */
+
+.page {
+  width: 80%;
+  margin: 15px auto 0 auto;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+/* Defines the constraints for header within subpage */
+
+.header {
+  font-size: 100%;
+  margin-top: 60px;
+}
+
+.product-list-page {
+  display: flex;
+  flex-flow: row wrap;
+  /* justify-content: space-around; */
+}
+
+/* Defines the constraints for the filter */
+
+.sidebar {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* Defines the constraints of the list of products */
+
+.product-list {
+  width: 85%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+/* Defines the top navigation bar */
+
+#navbar {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  padding: 0% 5% 0% 5%;
+  background-color: #fff;
+  z-index: 100;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Sizing for the thumbnail product image */
+
+.product-sm-image {
+  height: 130px;
+  width: 130px;
+}
+
+/* Expanding the search field to 100% */
+
+.search-full-width {
+  width: 100%;
+  font-size: 20px;
+}
+
+/* Making the cart icon clickable */
+
+#cart-icon, #person-icon {
+  cursor: pointer;
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Increase the font size of Store name */
+
+#store-name {
+  font-size: 20px;
+}
+
+/* Gender radio button group styling */
+
+mat-button-toggle-group {
+  width: 90%;
+}
+
+/* Gender radio buttons styling */
+
+mat-button-toggle {
+  /* padding: 5px; */
+  margin: 5px;
+  background-color: white;
+  color: black !important;
+  /* flex: 1 1 100%;
+  box-sizing: border-box;
+  align-items: center;
+  flex-direction: row;
+  display: flex; */
+}
+
+/* Constrains for radio button group */
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+/* Radio Button margin */
+
+.radio-button {
+  margin: 5px;
+}
+
+/* Changes the color of the Radio button to blue */
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: rgb(66, 134, 244);
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  color: rgb(66, 134, 244);
+  background-color: rgb(66, 134, 244);
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+  background-color: rgb(255, 37, 37, .26)
+}
+
+/* Hyperlink */
+
+a {
+  cursor: pointer;
+  color: #3a3f44;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.review-container {
+  flex-direction: column;
+  clear: both;
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.review-container > * {
+  width: 95%;
+}
+
+.review {
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.login-div, .register-div{
+  display: flex;
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+  background-color: white;
+  padding: 5%;
+  border-radius: 5px;
+  /* box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-div mat-form-field, .register-div mat-form-field {
+  width: 500px;
+}
+
+.shopping-cart {
+  display: flex;
+  flex-flow: column wrap;
+  width: 90%;
+  padding: 3%;
+  margin: 1%;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart Item Styling */
+
+.cart-item {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 2%;
+  margin-bottom: 2%;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.checkout-item {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.checkout {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.checkout-list {
+  width: 40%;
+  padding: 3%;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-summary {
+  width: 40%;
+  padding: 3%;
+  background-color: white;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.review-item, .order-item {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2%;
+  margin-bottom: 2%;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.payment {
+  height: 500px;
+  overflow-y: hidden !important;
+}
+
+.payment-form {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.payment-form-field {
+  width: 100%;
+}
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 5%;
+}

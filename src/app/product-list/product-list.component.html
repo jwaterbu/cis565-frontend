@@ -1,0 +1,63 @@
+<div class="header">
+    <p class="mat-h1">{{ pageTitle }}</p>
+    <form class="example-form">
+        <mat-form-field class="search-full-width">
+            <input matInput type="search" placeholder="Search" value="" name="searchbox" [(ngModel)]='listFilter'>
+        </mat-form-field>
+    </form>
+</div>
+<div class='row'>
+    <div class='col-md-6'>
+        <h4>Filtered by: {{ listFilter }}</h4>
+    </div>
+</div>
+<div class="product-list-page">
+    <section class="sidebar">
+        <p class="mat-h2">Gender</p>
+        <mat-button-toggle-group vertical [(ngModel)]="genderFilter" appearance="legacy" name="fontStyle"
+            aria-label="Font Style">
+            <mat-button-toggle value="Male">Male</mat-button-toggle>
+            <mat-button-toggle value="Female">Female</mat-button-toggle>
+            <mat-button-toggle value="All">All</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <div style="margin-top: 5px;">Selected Gender: <br><strong>{{genderFilter}}</strong></div>
+        <mat-divider style="margin: 15px;"></mat-divider>
+        <p class="mat-h2">Price</p>
+        <label>Select a price range:</label>
+        <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="priceFilter">
+            <mat-radio-button class="radio-button" *ngFor="let priceRange of priceRanges" [value]="priceRange.text">
+                {{priceRange.text}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <div>Selected Price Range: <br><strong>{{priceFilter}}</strong></div>
+        <mat-divider style="margin: 15px;"></mat-divider>
+        <button mat-raised-button (click)='clearFilter()'>Clear Filter(s)</button>
+    </section>
+
+    <section class="product_list" *ngIf="loading; else loadedProducts"> 
+        <mat-spinner></mat-spinner>
+        ...Loading...
+    </section>
+
+    <ng-template #loadedProducts>
+        <section class="product-list">
+            <div class="container-fluid" *ngFor='let product of filteredProducts'>
+                <mat-card class="product-card" [class.mat-elevation-z2]=true>
+                    <img mat-card-image sty [src]='product.small_image_path' [alt]='product.description'
+                        class="product-sm-image">
+                    <mat-card-title style="font-size: 18px; text-align: center;"><a
+                            [routerLink]="['/product', product.id]">{{ product.title }}</a></mat-card-title>
+                    <mat-card-subtitle style="text-align: center;">{{ product.description }}</mat-card-subtitle>
+                    <mat-card-content>
+                        <p>{{ product.price | currency }}</p>
+                        <p>Rating: {{ getRatingAvg(product.reviews) }}/5</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="addToCart(product)">Add To Cart</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </section>
+    </ng-template>
+</div>

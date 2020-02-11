@@ -1,0 +1,39 @@
+<div class="header">
+    <p class="mat-h1">{{ pageTitle }}</p>
+</div>
+<div class="checkout" *ngIf="shoppingCartitems?.length > 0;else emptyCart">
+    <div class="checkout-list">
+        <div class="mat-h2">Review Your Order</div>
+        <div class="checkout-item" *ngFor="let item of shoppingCartitems">
+            <span>{{ item.product.title }}</span>
+            <span>{{ item.product.price * item.quantity | currency }}</span>
+            <!-- <span>{{ item.quantity }}</span> -->
+        </div>
+    </div>
+    <div class="checkout-summary">
+        <div class="mat-h2">Choose a delivery option:</div>
+        <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="shippingCost">
+            <mat-radio-button class="radio-button" *ngFor="let shippingOption of shippingOptions"
+                [value]="shippingOption.cost">
+                {{ shippingOption.title }}
+            </mat-radio-button>
+        </mat-radio-group>
+        <div class="mat-h2" style="margin-top: 2%;">Order Summary</div>
+        <mat-divider></mat-divider>
+        <div class="mat-h4">Items ( {{ getShoppingCartQuantity() }} ) {{ getShoppingCartTotal() | currency }}</div>
+        <div class="mat-h4">Shipping and handling: {{ shippingCost | currency }} </div>
+        <div class="mat-h4">Estimated tax to be collected:
+            {{ (getShoppingCartTotal() + shippingCost) * 0.06 | currency }}</div>
+        <mat-divider></mat-divider>
+        <div class="mat-h3">Order Total: {{ (getShoppingCartTotal() + shippingCost) * 1.06 | currency }}</div>
+        <button mat-raised-button color="primary" (click)="payWithCard()">Pay with Card</button>
+    </div>
+</div>
+
+<ng-template #emptyCart>
+    <div class="container">
+        <mat-card style="padding: 5%;">
+            <div class="mat-h1">There are no items in your Cart to Checkout.</div>
+        </mat-card>
+    </div>
+</ng-template>

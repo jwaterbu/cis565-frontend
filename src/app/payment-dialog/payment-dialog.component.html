@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<mat-dialog-content class="payment">
+    <p>{{data.message}}</p>
+    <form [formGroup]="paymentForm" class="payment-form">
+        <p>
+            <mat-form-field appearance="fill" class='payment-form-field'>
+                <mat-label>Card Number</mat-label>
+                <input matInput formControlName="cardNumber" type="tel"
+                    [ngClass]="{ 'is-invalid': f.cardNumber.errors }" inputmode="numeric">
+                <mat-error *ngIf="f.cardNumber.errors">
+                    <div *ngIf="f.cardNumber.errors?.required">Card Number is required</div>
+                    <div *ngIf="f.cardNumber.errors?.maxlength">Please enter at least 16 numeric values</div>
+                    <div *ngIf="f.cardNumber.errors?.minlength">Please enter at least 16 numeric values</div>
+                    <div *ngIf="f.cardNumber.errors?.invalidNumber">Only numbers are allowed</div>
+                </mat-error>
+                <mat-icon matSuffix>credit_card</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="fill" class='payment-form-field'>
+                <mat-label>Date</mat-label>
+                <input matInput formControlName="date" type="date" [ngClass]="{ 'is-invalid': f.date.errors }">
+                <mat-error *ngIf="f.date.errors">
+                    <div *ngIf="f.date.errors?.required">Date is required</div>
+                    <div *ngIf="f.date.errors?.dateValidator">Date cannot be in the past</div>
+                </mat-error>
+                <mat-icon matSuffix>date_range</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="fill" class='payment-form-field'>
+                <mat-label>CVC</mat-label>
+                <input matInput formControlName="cvc" type="tel" [ngClass]="{ 'is-invalid': f.cvc.errors }" inputmode="numeric">
+                <mat-error *ngIf="f.cvc.errors">
+                    <div *ngIf="f.cvc.errors?.required">CVC is required</div>
+                    <div *ngIf="f.cvc.errors?.maxlength">Please enter at least 3 numeric values</div>
+                    <div *ngIf="f.cvc.errors?.minlength">Please enter at least 3 numeric values</div>
+                    <div *ngIf="f.cvc.errors?.numberValidator">Only numbers are allowed</div>
+                </mat-error>
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+        </p>
+
+        <div mat-dialog-actions>
+            <button mat-raised-button style="margin-right: 30px;"
+                [title]="paymentForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!paymentForm.valid" (click)="pay()">Pay</button>
+            <button mat-raised-button color="primary" (click)="exit()">Exit</button>
+        </div>
+
+    </form>
+</mat-dialog-content>

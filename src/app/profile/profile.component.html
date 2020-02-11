@@ -1,0 +1,51 @@
+<div class="header">
+    <p class="mat-h1">{{ pageTitle }}</p>
+</div>
+
+<mat-card style="padding-left: 5%;">
+    <div class="mat-h3"><strong>Username:</strong> {{ currentUser.username }}</div>
+    <div class="mat-h3"><strong>Email: </strong>{{ currentUser.email }}</div>
+    <div class="mat-h3"><strong>Orders Made: </strong>{{ userOrders?.length }}</div>
+    <div class="mat-h3"><strong>Reviews Written: </strong>{{ userReviews?.length }}</div>
+</mat-card>
+
+<div class="container">
+    <mat-tab-group>
+        <mat-tab label="Orders">
+            <div *ngIf="userOrders?.length > 0;else noUserOrders">
+                <div class="order-item" *ngFor="let order of userOrders">
+                    <span> Order Date: {{ order.createdAt | date:'M/d/yy, h:mm a' }}</span><br>
+                    <span> Order Id: {{ order.id }} | Total items ({{ getTotalCount(order.order_products) }} )</span>
+                    <mat-divider></mat-divider>
+                    <span class="order-details" *ngFor="let order_product of order.order_products">
+                        <span> {{ findOrderProduct(order_product.id).product.title }}</span> <br> 
+                        <span> Quantity: {{ order_product.quantity }}</span>
+                        <span> Cost: {{ order_product.quantity * order_product.price | currency }}</span>
+                        <mat-divider></mat-divider>
+                    </span>
+                    <span> Delivery Method: {{ order.shippingOptionId == 1 ?  "Free Shipping" : "Expedited Delivery"  }}</span><br>
+                </div>
+            </div>
+            <ng-template #noUserOrders>
+                <mat-card style="margin-top: 5%; padding: 5%;">
+                    <div class="mat-h1">No Orders to display.</div>
+                </mat-card>
+            </ng-template>
+        </mat-tab>
+        <mat-tab label="Reviews">
+            <div *ngIf="userReviews?.length > 0;else noUserReviews">
+                <div class="review-item" *ngFor="let review of userReviews">
+                    <span><strong>Review Rating:</strong> {{ review.rating }}</span>
+                    <span><strong>Review Title:</strong> {{ review.title }}</span>
+                    <a [routerLink]="['/product', review.productId]">More Details</a>
+                </div>
+            </div>
+            <ng-template #noUserReviews>
+                <mat-card style="margin-top: 5%; padding: 5%;">
+                    <div class="mat-h1">No Reviews to display.</div>
+                </mat-card>
+            </ng-template>
+        </mat-tab>
+
+    </mat-tab-group>
+</div>

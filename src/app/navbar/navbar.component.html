@@ -1,0 +1,29 @@
+<mat-toolbar id="navbar">
+    <mat-toolbar-row>
+        <a mat-button routerLink="welcome"><span id="store-name">Store</span></a>
+        <span class="nav-spacer"></span>
+        
+        <div *ngIf="currentUser else notLoggedIn">
+            <div id="person-icon" class="with-icon" [matMenuTriggerFor]="user_menu">
+                <mat-icon>person</mat-icon><span style="font-size: 15px;">Welcome
+                {{ currentUser.username }}</span>
+            </div>
+            <mat-menu #user_menu="matMenu">
+                <button mat-menu-item routerLink="profile">Profile</button>
+                <button mat-menu-item (click)="logout()">Logout</button>
+            </mat-menu>
+        </div>
+        <a mat-button routerLink="products">Products</a>
+        <ng-template #notLoggedIn>
+            <a mat-button routerLink="login">Login</a>
+            <a mat-button routerLink="register">Sign-Up</a>
+        </ng-template>
+        <a mat-button routerLink="faq">FAQ</a>
+        <mat-icon id="cart-icon" [matMenuTriggerFor]="menu" matBadge={{cartItemCount}} matBadgeColor="warn">
+            shopping_cart</mat-icon>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="shoppingcart">Shopping Cart</button>
+            <button mat-menu-item routerLink="checkout">Checkout</button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
