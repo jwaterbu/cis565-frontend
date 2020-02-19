@@ -1,0 +1,134 @@
+[
+    {
+        "productId": 1,
+        "categoryId": 1,
+        "title": "Adidas Grand Court Sneaker",
+        "description": "Grey/White",
+        "price": 41.75,
+        "smImagePath": "../assets/images/item_1.jpg",
+        "lgImagePath": "../assets/images/item_1.jpg",
+        "createdDate": "10/16/2019",
+        "updatedDate": "10/16/2019"
+    },
+    {
+        "productId": 2,
+        "categoryId": 1,
+        "title": "Clarks Raharto Plain Oxford",
+        "description": " Blue Nubuck",
+        "price": 59.95,
+        "smImagePath": "../assets/images/item_2.jpg",
+        "lgImagePath": "../assets/images/item_2.jpg",
+        "createdDate": "10/16/2019",
+        "updatedDate": "10/16/2019"
+    },
+    {
+        "productId": 3,
+        "categoryId": 1,
+        "title": "Adidas Originals Cf Advantage",
+        "description": "White/Dark Blue",
+        "price": 46.00,
+        "smImagePath": "../assets/images/item_3.jpg",
+        "lgImagePath": "../assets/images/item_3.jpg",
+        "createdDate": "10/16/2019",
+        "updatedDate": "10/16/2019"
+    },
+    {
+        "productId": 4,
+        "categoryId": 1,
+        "title": "Adidas CF Lite Racer Byd",
+        "description": "White/Black",
+        "price": 52.50,
+        "smImagePath": "../assets/images/item_4.jpg",
+        "lgImagePath": "../assets/images/item_4.jpg",
+        "createdDate": "10/16/2019",
+        "updatedDate": "10/16/2019"
+    },
+    {
+        "productId": 5,
+        "categoryId": 1,
+        "title": "Skechers Delson-Axton Sneaker",
+        "description": "Brown",
+        "price": 52.90,
+        "smImagePath": "../assets/images/item_5.jpg",
+        "lgImagePath": "../assets/images/item_5.jpg",
+        "createdDate": "10/16/2019",
+        "updatedDate": "10/16/2019"
+    },
+    {
+        "productId": 6,
+        "categoryId": 1,
+        "title": "Sperry Striper II Salt Washed CVO Sneaker",
+        "description": "Gray",
+        "price": 42.00,
+        "smImagePath": "../assets/images/item_6.jpg",
+        "lgImagePath": "../assets/images/item_6.jpg",
+        "createdDate": "10/16/2019",
+        "updatedDate": "10/16/2019"
+    },
+    {
+        "productId": 7,
+        "categoryId": 1,
+        "title": "Steve Madden's Fenta Fashion Sneaker",
+        "description": "Black Fabric",
+        "price": 62.00,
+        "smImagePath": "../assets/images/item_7.jpg",
+        "lgImagePath": "../assets/images/item_7.jpg",
+        "createdDate": "10/16/2019",
+        "updatedDate": "10/16/2019"
+    },
+    {
+        "productId": 8,
+        "categoryId": 2,
+        "title": "Nike AIR Force 1 Basketball-Shoes",
+        "description": "Noble RED/Black-Plum Fog-Summit White",
+        "price": 109.95,
+        "smImagePath": "../assets/images/item_8.jpg",
+        "lgImagePath": "../assets/images/item_8.jpg",
+        "createdDate": "10/26/2019",
+        "updatedDate": "10/26/2019"
+    },
+    {
+        "productId": 9,
+        "categoryId": 2,
+        "title": "IDIFU Elastic Flat Sandals",
+        "description": "Black",
+        "price": 16.99,
+        "smImagePath": "../assets/images/item_9.jpg",
+        "lgImagePath": "../assets/images/item_9.jpg",
+        "createdDate": "10/26/2019",
+        "updatedDate": "10/26/2019"
+    },
+    {
+        "productId": 10,
+        "categoryId": 2,
+        "title": "Recreation Knit Sports Shoes",
+        "description": "Red",
+        "price": 39.96,
+        "smImagePath": "../assets/images/item_10.jpg",
+        "lgImagePath": "../assets/images/item_10.jpg",
+        "createdDate": "10/26/2019",
+        "updatedDate": "10/26/2019"
+    },
+    {
+        "productId": 11,
+        "categoryId": 2,
+        "title": "SouthBrothers Sneakers Athletic Running Shoes",
+        "description": "Pink",
+        "price": 24.99,
+        "smImagePath": "../assets/images/item_11.jpg",
+        "lgImagePath": "../assets/images/item_11.jpg",
+        "createdDate": "10/26/2019",
+        "updatedDate": "10/26/2019"
+    },
+    {
+        "productId": 12,
+        "categoryId": 2,
+        "title": "Jordan Air 1 Mid Retro",
+        "description": "Mid Pink-Foam",
+        "price": 321.84,
+        "smImagePath": "../assets/images/item_12.jpg",
+        "lgImagePath": "../assets/images/item_12.jpg",
+        "createdDate": "10/26/2019",
+        "updatedDate": "10/26/2019"
+    }
+]
