@@ -35,7 +35,7 @@
         <button mat-raised-button (click)='clearFilter()'>Clear Filter(s)</button>
     </section>
 
-    <section class="product_list" *ngIf="loading; else loadedProducts"> 
+    <section class="product_list" *ngIf="loading; else loadedProducts">
         <mat-spinner></mat-spinner>
         ...Loading...
     </section>
@@ -51,7 +51,7 @@
                     <mat-card-subtitle style="text-align: center;">{{ product.description }}</mat-card-subtitle>
                     <mat-card-content>
                         <p>{{ product.price | currency }}</p>
-                        <p>Rating: {{ getRatingAvg(product.reviews) }}/5</p>
+                        <p>Rating: {{ utilService.getRatingAvg(product.reviews) }}/5</p>
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-raised-button (click)="addToCart(product)">Add To Cart</button>

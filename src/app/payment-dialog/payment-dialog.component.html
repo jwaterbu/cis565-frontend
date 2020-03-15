@@ -18,7 +18,7 @@
         </p>
         <p>
             <mat-form-field appearance="fill" class='payment-form-field'>
-                <mat-label>Date</mat-label>
+                <mat-label>Expiration Date</mat-label>
                 <input matInput formControlName="date" type="date" [ngClass]="{ 'is-invalid': f.date.errors }">
                 <mat-error *ngIf="f.date.errors">
                     <div *ngIf="f.date.errors?.required">Date is required</div>
@@ -30,11 +30,12 @@
         <p>
             <mat-form-field appearance="fill" class='payment-form-field'>
                 <mat-label>CVC</mat-label>
-                <input matInput formControlName="cvc" type="tel" [ngClass]="{ 'is-invalid': f.cvc.errors }" inputmode="numeric">
+                <input matInput formControlName="cvc" type="tel" [ngClass]="{ 'is-invalid': f.cvc.errors }"
+                    inputmode="numeric">
                 <mat-error *ngIf="f.cvc.errors">
                     <div *ngIf="f.cvc.errors?.required">CVC is required</div>
-                    <div *ngIf="f.cvc.errors?.maxlength">Please enter at least 3 numeric values</div>
-                    <div *ngIf="f.cvc.errors?.minlength">Please enter at least 3 numeric values</div>
+                    <div *ngIf="f.cvc.errors?.maxlength">Please enter at least 3 to 4 numeric values</div>
+                    <div *ngIf="f.cvc.errors?.minlength">Please enter at least 3 to 4 numeric values</div>
                     <div *ngIf="f.cvc.errors?.numberValidator">Only numbers are allowed</div>
                 </mat-error>
                 <mat-icon matSuffix>lock</mat-icon>

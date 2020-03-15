@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthGuard } from '../auth.guard';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IReview } from '../models/review';
+import { UtilService } from '../shared/util.service';
 
 export interface PriceRange {
   text: string;
@@ -54,6 +55,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private cartService: CartService,
+    public utilService: UtilService,
     private _snackBar: MatSnackBar,
     private authGuard: AuthGuard,
     private route: ActivatedRoute,
@@ -147,8 +149,4 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  getRatingAvg(reviews:IReview[]){
-    let avg =  reviews.reduce((total, next) => total + next.rating, 0) / reviews.length;
-    return isNaN(avg) ? 0 : avg;
-  }
 }

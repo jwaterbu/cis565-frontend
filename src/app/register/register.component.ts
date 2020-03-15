@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
-import { first } from 'rxjs/internal/operators/first';
+import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
 
 function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -33,6 +33,7 @@ function MustMatch(controlName: string, matchingControlName: string) {
 export class RegisterComponent implements OnInit {
   pageTitle: string = "Register";
   registerForm: FormGroup;
+
   returnUrl: string;
 
   constructor(private fb: FormBuilder,
@@ -45,14 +46,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(264)]],
+      password: ['', [Validators.required, Validators.maxLength(20)]],
       confirmPassword: ['', Validators.required]
     }, { validators: MustMatch('password', 'confirmPassword') });
 
     if (this.authenticationService.currentUserValue) {
       //if logged in go to welcome page
-      this.router.navigate(['/']);
+      this.router.navigate(['/profile']);
     }
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
@@ -98,5 +99,4 @@ export class RegisterComponent implements OnInit {
         });
     ;
   }
-
 }

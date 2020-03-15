@@ -44,7 +44,7 @@ export class PaymentDialogComponent implements OnInit {
     this.paymentForm = this.fb.group({
       cardNumber: ['', [Validators.required, numberValidator, Validators.maxLength(16), Validators.minLength(16)]],
       date: ['', [Validators.required, dateValidator]],
-      cvc: ['', [Validators.required, numberValidator, Validators.maxLength(3), Validators.minLength(3)]]
+      cvc: ['', [Validators.required, numberValidator, Validators.maxLength(4), Validators.minLength(3)]]
     });
   }
 

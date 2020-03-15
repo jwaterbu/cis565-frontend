@@ -22,6 +22,7 @@
                 <mat-error *ngIf="f.email.errors">
                     <div *ngIf="f.email.errors.required">Email is required</div>
                     <div *ngIf="f.email.errors.email">Invalid email format</div>
+                    <div *ngIf="f.email.errors.maxlength">Email length cannot be greater than 254 characters</div>
                 </mat-error>
                 <mat-icon matSuffix>mail</mat-icon>
             </mat-form-field>
@@ -33,6 +34,7 @@
                     [ngClass]="{ 'is-invalid': f.password.errors }">
                 <mat-error *ngIf="f.password.errors">
                     <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.maxlength">Password length cannot be greater than 20 characters</div>
                 </mat-error>
                 <mat-icon matSuffix>vpn_key</mat-icon>
             </mat-form-field>

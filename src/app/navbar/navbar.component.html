@@ -10,6 +10,7 @@
             </div>
             <mat-menu #user_menu="matMenu">
                 <button mat-menu-item routerLink="profile">Profile</button>
+                <div *ngIf="currentUser.admin"><button mat-menu-item routerLink="admin">Manage</button></div>
                 <button mat-menu-item (click)="logout()">Logout</button>
             </mat-menu>
         </div>
