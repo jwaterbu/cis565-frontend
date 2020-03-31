@@ -12,7 +12,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --output-path e-commerce-project  --aot --prod"
+    "postinstall": "ng build --output-path e-commerce-project  --aot --prod",
+    "single-test": "npm t -- --watch=false --browsers=ChromeHeadlessNoSandbox"
   },
   "private": true,
   "dependencies": {

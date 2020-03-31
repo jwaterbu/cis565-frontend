@@ -1,10 +1,22 @@
 language: node_js
+branches:
+  only:
+    - master
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
 before_install:
   - npm --version
+  - npm i -g @angular-cli
 install:
   - npm i
 before_script:
   - ng build
 script:
-  - ng test
+  - npm run single-test
   - ng e2e
+#npm t --browsers=ChromeHeadlessNoSandbox
