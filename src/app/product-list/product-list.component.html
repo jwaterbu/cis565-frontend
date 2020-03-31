@@ -42,7 +42,7 @@
 
     <ng-template #loadedProducts>
         <section class="product-list">
-            <div class="container-fluid" *ngFor='let product of filteredProducts'>
+            <div *ngFor='let product of filteredProducts'>
                 <mat-card class="product-card" [class.mat-elevation-z2]=true>
                     <img mat-card-image sty [src]='product.small_image_path' [alt]='product.description'
                         class="product-sm-image">
@@ -51,7 +51,7 @@
                     <mat-card-subtitle style="text-align: center;">{{ product.description }}</mat-card-subtitle>
                     <mat-card-content>
                         <p>{{ product.price | currency }}</p>
-                        <p>Rating: {{ utilService.getRatingAvg(product.reviews) }}/5</p>
+                        <p>{{ utilService.getRatingAvg(product.reviews) }}/5</p>
                     </mat-card-content>
                     <mat-card-actions>
                         <button mat-raised-button (click)="addToCart(product)">Add To Cart</button>

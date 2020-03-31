@@ -2,8 +2,8 @@
     <p class="mat-h1">{{ pageTitle }}</p>
 </div>
 
-<mat-card style="height: 300px;" *ngIf='product'>
-    <img mat-card-image sty [src]='product.small_image_path' [alt]='product.description'
+<mat-card *ngIf='product'>
+    <img mat-card-image [src]='product.small_image_path' [alt]='product.description'
         style="float:left; width: 30%; padding: 50px">
 
     <div>
@@ -11,7 +11,7 @@
             <h1>{{product.title}}</h1>
         </mat-card-header>
 
-        <div class="mat-body-1" style="float:left; margin-left:5%; width: 40%; font-size: 20px; line-height: 30px;">
+        <div style="float:left; margin-left:5%; width: 40%; font-size: 20px; line-height: 30px;">
             <p><strong>Name:</strong> {{product.title}}</p>
 
             <p><strong>Description:</strong> {{product.description}}</p>

@@ -1,0 +1,14 @@
+.user-div {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    background-color: white;
+    padding: 5%;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}

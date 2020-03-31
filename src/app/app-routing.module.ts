@@ -12,6 +12,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent as ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductEditGuard } from './product-edit.guard';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditGuard } from './user-edit.guard';
 
 
 const routes: Routes = [
@@ -23,6 +27,8 @@ const routes: Routes = [
   { path: 'shoppingcart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'product/:id', component: ProductDetailComponent },
+  { path: 'product/:id/edit', component: ProductEditComponent, canActivate: [AdminGuard], canDeactivate: [ProductEditGuard] },
+  { path: 'user/:id/edit', component: UserEditComponent, canActivate: [AdminGuard], canDeactivate: [UserEditGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
   { path: 'faq', component: FaqComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },

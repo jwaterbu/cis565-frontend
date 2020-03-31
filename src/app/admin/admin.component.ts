@@ -8,6 +8,7 @@ import { IProduct } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { UtilService } from '../shared/util.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -27,22 +28,30 @@ export class AdminComponent implements OnInit {
   products: IProduct[];
   dialogResult: boolean;
 
-  displayedUserColumns: string[] = ['id', 'username', 'email', 'createdAt', 'updatedAt', 'admin', 'deleteBtn'];
+  displayedUserColumns: string[] = ['id', 'username', 'email', 'createdAt', 'updatedAt', 'edit', 'deleteBtn'];
   userDataSource;
 
   productDataSource;
   displayedProductColumns: string[] = ['id', 'title', 'price', 'categoryId', 'rating'];
   expandedProduct: IProduct | null;
 
-  constructor(private userService: UserService, private productService: ProductService, public utilService: UtilService, public dialog: MatDialog) { }
+  constructor(private userService: UserService, private productService: ProductService, public utilService: UtilService, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.reloadUsers();
+    this.reloadProducts();
+  }
+
+  reloadUsers() {
     this.userService.getUsers().subscribe(
       users => {
         this.users = users;
         this.userDataSource = new MatTableDataSource(this.users);
       }
     )
+  }
+
+  reloadProducts() {
     this.productService.getProducts().subscribe(
       products => {
         this.products = products;
@@ -61,29 +70,25 @@ export class AdminComponent implements OnInit {
     this.productDataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  changePermission(e, userId): void {
-    // Add Code to update user state
-    // this.userService.updateUser(e.checked, userId)
-  }
-
   deleteUser(user: IUser): void {
     this.openDialog({
-      title: 'Change Permission',
+      title: 'Delete User',
       message: `Are you sure you want to delete ${user.username}?`,
       btnOkText: 'Yes',
       btnCancelText: 'No'
-    }, user.id);
-  }
-
-  editProduct(product: IProduct): void {
-    alert('Need to implement!');
+    }, user.id, 'USER');
   }
 
   deleteProduct(product: IProduct): void {
-    alert('Need to implement!');
+    this.openDialog({
+      title: 'Delete Product',
+      message: `Are you sure you want to delete ${product.title}?`,
+      btnOkText: 'Yes',
+      btnCancelText: 'No'
+    }, product.id, 'PRODUCT');
   }
 
-  openDialog(data, userId): void {
+  openDialog(data, id, requestType: string): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '500px',
       data: data
@@ -92,8 +97,22 @@ export class AdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.dialogResult = dialogResult;
       if (this.dialogResult) {
-        // Update specific user's admin state
-        console.log(`User ${userId} has been deleted!`)
+        if (requestType == 'USER') {
+          this.userService.deleteUser(id).subscribe((user) => {
+            this.reloadUsers();
+            this._snackBar.open(`User has been deleted!`, '', {
+              duration: 4000
+            });
+          });
+        }
+        if (requestType == 'PRODUCT') {
+          this.productService.deleteProduct(id).subscribe((product => {
+            this.reloadProducts();
+            this._snackBar.open(`Product has been deleted!`, '', {
+              duration: 4000
+            });
+          }));
+        }
       }
     });
   }

@@ -1,0 +1,64 @@
+
+<div class="header">
+    <p class="mat-h1">{{ pageTitle }}</p>
+</div>
+
+<div class="product-div">
+    <form class='card-body' [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class='row'>
+            <mat-label class='col-md-4'>Product Title: </mat-label>
+            <mat-form-field appearance="outline" class='col-md-8'>
+                <input matInput formControlName="title" type="text" [ngClass]="{ 'is-invalid': f.title.errors }">
+                <mat-error *ngIf="f.title.errors">
+                    <div *ngIf="f.title.errors.required">Title is required</div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-label class='col-md-4'>Product Description: </mat-label>
+            <mat-form-field appearance="outline" class='col-md-8'>
+                <input matInput formControlName="description" type="text"
+                    [ngClass]="{ 'is-invalid': f.description.errors }">
+                <mat-error *ngIf="f.description.errors">
+                    <div *ngIf="f.description.errors.required">Description is required</div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-label class='col-md-4'>Product Price: </mat-label>
+            <mat-form-field appearance="outline" class='col-md-8'>
+                <input matInput formControlName="price" type="number"
+                    [ngClass]="{ 'is-invalid': f.price.errors }">
+                <mat-error *ngIf="f.price.errors">
+                    <div *ngIf="f.price.errors?.required">Price is required</div>
+                    <div *ngIf="f.price.errors?.invalidNumber">Price must be a number</div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row" style="margin-top: 15px;">
+            <mat-label class='col-md-4'>Product Category: </mat-label>
+            <mat-radio-group class='col-md-8' aria-label="Select an option" formControlName="categoryId">
+                <mat-radio-button [value]=1>Male</mat-radio-button>
+                <mat-radio-button [value]=2>Female</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="row">
+            <mat-label class='col-md-4'>Product Image: </mat-label>
+            <mat-radio-group formControlName="imageId" class='col-md-8' aria-label="Select an option">
+                <mat-radio-button *ngFor="let i of imageIndex" [value]="i">
+                    <img mat-card-image sty [src]=getImage(i) class="product-sm-image">
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <p>
+            <button mat-raised-button style="margin: 30px;"
+                [title]="productForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!productForm.valid">Submit</button>
+        </p>
+
+    </form>
+</div>

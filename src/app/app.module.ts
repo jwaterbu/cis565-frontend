@@ -20,6 +20,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+
 
 
 @NgModule({
@@ -39,6 +42,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     FaqComponent,
     AdminComponent,
     ConfirmationDialogComponent,
+    ProductEditComponent,
+    UserEditComponent,
   ],
   entryComponents: [
     DialogComponent,
