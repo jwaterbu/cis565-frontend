@@ -25,15 +25,17 @@ export class UserService {
       }));
   }
 
-  updateUser(id: number, username: string, email: string, admin: boolean) {
+  updateUser(id: number, username: string, email: string, admin: boolean, password: string) {
+    let data = password ? { username, email, admin, password } : { username, email, admin }
 
-    return this.http.put<any>(`${environment.apiUrl}/users/${id}`, { username, email, admin }, { headers: this.auth.getHeader() })
+    return this.http.put<any>(`${environment.apiUrl}/users/${id}`, data, { headers: this.auth.getHeader() })
       .pipe(map(user => {
         if (user) {
           return user;
         }
       }));
   }
+
 
   getUser(id: number): Observable<IUser> {
     return this.http.get<IUser>(`${environment.apiUrl}/users/${id}`, { headers: this.auth.getHeader() })

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { IUser } from '../models/user';
 
+
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
@@ -23,7 +24,8 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.fb.group({
       username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email, Validators.maxLength(264)]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(254)]],
+      password: ['', [ Validators.minLength(4), Validators.maxLength(20)]],
       admin: ['', Validators.required]
     });
 
@@ -38,8 +40,9 @@ export class UserEditComponent implements OnInit {
 
   onSubmit() {
     const u = { ...this.user, ...this.userForm.value };
+    let passwd = this.userForm.controls.password.value === null ? '' : this.userForm.controls.password.value.trim();
     if (u) {
-      this.userService.updateUser(u.id, u.username, u.email, u.admin).subscribe({
+      this.userService.updateUser(u.id, u.username, u.email, u.admin, passwd).subscribe({
         next: () => {
           this._snackBar.open(`User has been updated!`, '', {
             duration: 4000
