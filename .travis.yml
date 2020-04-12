@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - lts/*
+branches:
+  only:
+    - master
+addons:
+  chrome: stable
+before_install:
+  - npm --version
+  - node --version
+install:
+  - npm i
+before_script:
+  - ng version
+  - ng build
+script:
+  - ls -al
+#  - npm run single-test
+#  - ng e2e
+#  - npm t --browsers=ChromeHeadlessNoSandbox
