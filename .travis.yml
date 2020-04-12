@@ -9,11 +9,10 @@ addons:
 before_install:
   - npm --version
   - node --version
-  - npm i -g @angular/cli
-  - ng version
 install:
   - npm i
 before_script:
+  - ng version
   - ng build
 script:
   - ls -al
