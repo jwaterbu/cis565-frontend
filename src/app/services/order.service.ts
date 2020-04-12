@@ -16,7 +16,6 @@ export class OrderService {
   constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
   getUserOrders(): Observable<IOrder[]> {
-    console.log("In getUserOrders");
     return this.http.get<IOrder[]>(`${environment.apiUrl}/orders`, { headers: this.auth.getHeader() });
   }
 

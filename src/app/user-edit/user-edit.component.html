@@ -1,0 +1,52 @@
+<div class="header">
+    <p class="mat-h1">{{ pageTitle }}</p>
+</div>
+
+<div class="user-div">
+    <form class='card-body' [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class='row'>
+            <mat-label class='col-md-4'>Username: </mat-label>
+            <mat-form-field appearance="outline" class='col-md-8'>
+                <input matInput formControlName="username" type="text" [ngClass]="{ 'is-invalid': f.username.errors }">
+                <mat-error *ngIf="f.username.errors">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-label class='col-md-4'>Email: </mat-label>
+            <mat-form-field appearance="outline" class='col-md-8'>
+                <input matInput formControlName="email" type="text" [ngClass]="{ 'is-invalid': f.email.errors }">
+                <mat-error *ngIf="f.email.errors">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Invalid email format</div>
+                    <div *ngIf="f.email.errors.maxLength">Email length cannot be greater than 254 characters</div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-label class='col-md-4'>Password: </mat-label>
+            <mat-form-field appearance="outline" class='col-md-8'>
+                <input matInput formControlName="password" type="password"
+                    [ngClass]="{ 'is-invalid': f.password.errors }">
+                <mat-error *ngIf="f.password.errors">
+                    <div *ngIf="f.password.errors.minlength">Password length cannot be less than 4 characters</div>
+                    <div *ngIf="f.password.errors.maxlength">Password length cannot be greater than 20 characters</div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-label class='col-md-4'>Admin: </mat-label>
+            <mat-slide-toggle formControlName="admin" color="primary">
+            </mat-slide-toggle>
+        </div>
+        <p>
+            <button mat-raised-button style="margin: 30px;"
+                [title]="userForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!userForm.valid">Submit</button>
+        </p>
+    </form>
+</div>

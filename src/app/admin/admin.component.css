@@ -56,3 +56,13 @@ tr.example-product-row:not(.example-expanded-row):active {
 .product-btn>button {
     margin: 25px;
 }
+
+.btn-add-product {
+    margin: 20px auto;
+}
+
+.btn-add-product>button {
+    width: 100%;
+    color: white;
+    background-color: rgb(89, 89, 167);
+}

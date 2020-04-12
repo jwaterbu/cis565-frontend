@@ -34,6 +34,7 @@
                     [ngClass]="{ 'is-invalid': f.password.errors }">
                 <mat-error *ngIf="f.password.errors">
                     <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password length cannot be less than 4 characters</div>
                     <div *ngIf="f.password.errors.maxlength">Password length cannot be greater than 20 characters</div>
                 </mat-error>
                 <mat-icon matSuffix>vpn_key</mat-icon>
